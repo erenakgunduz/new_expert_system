@@ -43,7 +43,7 @@ def landing_page(request):
       {head_tags}
       <body>
         <main class="container">
-          <h1>Welcome to the Expert System</h1>
+          <h1>Hematological Expert System</h1>
           <a href="/expert_system"><button>Blood disease symptom diagnosis</button></a>
           <a href="/deep_learning"><button>Exploring white blood cells</button></a>
         </main>
@@ -125,7 +125,7 @@ def expert_system(request, question_id=None, answer_id=None):
 
 @app.route("/deep_learning")
 def deep_learning_module(request):
-    h1_text = "Deep Learning Module"
+    h1_text = "Deep Learning BloodMNIST"
     page_html = f"""
     <!DOCTYPE html>
     <html lang="en">
@@ -133,6 +133,15 @@ def deep_learning_module(request):
         <body>
             <main class="container">
                 <h1>{h1_text}</h1>
+                <details open>
+                    <summary>Important links</summary>
+                    <ul>
+                        <li><a href="https://colab.research.google.com/drive/1GQEQn9-kMGSvk-vwmVY_H0bLT9F-DInG?usp=sharing">MedMNIST loading</a></li>
+                        <li><a href="https://colab.research.google.com/drive/1S_zVmHa0s0EkfIQL2DbexTH49RYOsGPZ?usp=sharing">NN possibility #1</a></li>
+                        <li><a href="https://github.com/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb">Possibility #2</a></li>
+                        <li><a href="https://github.com/MedMNIST/experiments/blob/main/MedMNIST2D/train_and_eval_pytorch.py">Possibility #3</a></li>
+                    </ul>
+                <details>
                 <!-- Add code for deep learning module -->
             </main>
         </body>

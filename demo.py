@@ -4,67 +4,56 @@ from microdot import Microdot, Response
 
 
 # Define procedures as functions
-def cpr_procedure():
-    return "Perform CPR by giving chest compressions and rescue breaths."
+def clotting_factor():
+    return "Administer appropriate clotting factor replacement if necessary."
 
 
-def heimlich_maneuver():
-    return "Perform the Heimlich maneuver to clear the airway obstruction."
+def blood_transfusion():
+    return "blood transfusion if necessary."
 
 
-def stroke_procedure():
-    print("terminal message")
-    return "Take the person to the hospital immediately for medical treatment."
+def oncologist():
+    return "Refer to a hematologist-oncologist."
 
 
-# Define the nested dictionary
 emergency_procedures = """
-Bleeding:
-  question: Is the bleeding severe?
+Anemia:
+  question: Is the anemia acute or chronic?
   responses:
-    'No': Clean the wound with soap and water. Apply an antibiotic ointment and a
-      sterile bandage.
-    'Yes': Apply direct pressure to the wound. Elevate the injured area above the
-      heart if possible. Call for medical help if necessary.
-Burns:
-  question: What is the severity of the burn?
+    Acute: Treat the underlying cause of acute anemia. Provide $blood_transfusion
+    Chronic: Evaluate the type and cause of chronic anemia. Initiate appropriate treatment.
+Hemophilia:
+  question: What is the severity of bleeding?
   responses:
-    First-degree: Cool the burn with cool (not cold) water for several minutes. Apply
-      an antibiotic ointment and a sterile bandage.
-    Second-degree: Cool the burn with cool (not cold) water for several minutes. Cover
-      the burn with a sterile bandage or clean cloth. Call for medical help if necessary.
-    Third-degree:
-      question: Are there any additional injuries?
-      responses:
-        'No': Call for medical help immediately. Cover the burn with a sterile bandage
-          or clean cloth. Do not apply any ointments or creams to the burn.
-        'Yes': Call for medical help immediately. Cover the burn with a sterile bandage
-          or clean cloth. Do not apply any ointments or creams to the burn.
-Cardiac arrest:
-  question: Has the person lost consciousness and not breathing?
+    Mild: Apply pressure to the bleeding site. $clotting_factor
+    Moderate: Apply pressure to the bleeding site. $clotting_factor Seek medical help if bleeding persists.
+    Severe: Apply pressure to the bleeding site. $clotting_factor Seek immediate medical help.
+Leukemia:
+  question: What type of leukemia is suspected?
   responses:
-    'No': Monitor the person and keep them calm. Call for medical help if necessary.
-    'Yes': $cpr_procedure
-Choking:
-  question: Is the person able to speak or cough?
+    Acute Lymphoblastic Leukemia (ALL): Initiate chemotherapy and supportive care. Refer to a specialized oncology center.
+    Acute Myeloid Leukemia (AML): Initiate chemotherapy and supportive care. Refer to a specialized oncology center.
+    Chronic Lymphocytic Leukemia (CLL): Monitor the patient's condition and initiate treatment if necessary. $oncologist
+    Chronic Myeloid Leukemia (CML): Initiate targeted therapy. $oncologist
+Thrombocytopenia:
+  question: Is the patient experiencing severe bleeding?
   responses:
-    'No': $heimlich_maneuver
-    'Yes': Encourage them to keep coughing to try and dislodge the object. Call for
-      medical help if necessary.
-Fracture:
-  question: Is the fracture open or closed?
+    No: Monitor platelet count and observe for symptoms. Treat underlying cause if identified.
+    Yes: Administer platelet transfusion. Treat underlying cause if identified. Seek immediate medical help.
+Hemolytic Anemia:
+  question: What is the suspected cause of hemolysis?
   responses:
-    Closed: Immobilize the injured area if possible. Apply ice to limit swelling and
-      help relieve pain until medical help arrives.
-    Open: Do not attempt to realign the bone or push a bone that's sticking out back
-      in. Call for medical help immediately.
-Stroke:
-  question: Does the person show signs of stroke, like facial drooping, arm weakness,
-    or speech difficulties?
+    Autoimmune Hemolytic Anemia: Initiate immunosuppressive therapy. Consider $blood_transfusion
+    Hereditary Spherocytosis: Manage symptoms and complications. Consider splenectomy in severe cases.
+    G6PD Deficiency: Avoid triggers and medications that can cause hemolysis. Supportive care and monitoring.
+Multiple Myeloma:
+  question: What is the stage of multiple myeloma?
   responses:
-    'No': Monitor the person and keep them calm. Call for medical help if necessary.
-    'Yes': $stroke_procedure
+    Stage 1: Monitor the patient's condition and initiate treatment if necessary. $oncologist
+    Stage 2: Initiate chemotherapy and supportive care. Refer to a specialized oncology center.
+    Stage 3: Initiate chemotherapy and supportive care. Refer to a specialized oncology center.
 """
+
 
 # Convert YAML to dictionary
 emergency_procedures = yaml.safe_load(emergency_procedures)
@@ -162,7 +151,7 @@ def handle_procedure(request, response=None):
         current_state.clear()
         response_html = present_options(
             request,
-            "What is the nature of the medical emergency?",
+            "What is the nature of the blood-related disease or medical emergency?",
             emergency_procedures,
         )
     else:  # If a response is provided, handle it
