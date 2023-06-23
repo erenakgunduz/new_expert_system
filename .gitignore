@@ -1,6 +1,0 @@
-
-.gitignore
-**/.DS_Store
-notebooks/data
-notebooks/cifar_net.pth
-.ipynb_checkpoints/
