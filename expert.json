@@ -1,0 +1,138 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "text": "Do you have symptoms such as fatigue, weakness, and pale skin?",
+      "answers": [
+        {
+          "id": 1,
+          "text": "Yes",
+          "condition": null,
+          "follow_up_questions": [
+            {
+              "id": 1,
+              "text": "Do you have a deficiency in vitamin B12 or folate?",
+              "answers": [
+                {
+                  "id": 1,
+                  "text": "Yes",
+                  "condition": "vitamin_deficiency"
+                },
+                {
+                  "id": 2,
+                  "text": "No",
+                  "condition": "iron_deficiency"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "No",
+          "condition": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "text": "Are you experiencing unexplained weight loss, fever, and night sweats?",
+      "answers": [
+        {
+          "id": 1,
+          "text": "Yes",
+          "condition": null,
+          "follow_up_questions": [
+            {
+              "id": 2,
+              "text": "Do you have enlarged lymph nodes or abnormal blood test results?",
+              "answers": [
+                {
+                  "id": 1,
+                  "text": "Yes",
+                  "condition": "lymphoma"
+                },
+                {
+                  "id": 2,
+                  "text": "No",
+                  "condition": "leukemia"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "No",
+          "condition": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "text": "Do you have excessive bleeding or easy bruising?",
+      "answers": [
+        {
+          "id": 1,
+          "text": "Yes",
+          "condition": null,
+          "follow_up_questions": [
+            {
+              "id": 3,
+              "text": "Do you have a family history of bleeding disorders?",
+              "answers": [
+                {
+                  "id": 1,
+                  "text": "Yes",
+                  "condition": "inherited_coagulopathy"
+                },
+                {
+                  "id": 2,
+                  "text": "No",
+                  "condition": "acquired_coagulopathy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "No",
+          "condition": null
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "vitamin_deficiency",
+      "name": "Vitamin Deficiency Anemia",
+      "description": "Vitamin deficiency anemia is a condition caused by a deficiency in vitamin B12 or folate, resulting in a decreased production of healthy red blood cells."
+    },
+    {
+      "id": "iron_deficiency",
+      "name": "Iron Deficiency Anemia",
+      "description": "Iron deficiency anemia occurs when there is a lack of iron in the body, leading to reduced production of red blood cells and inadequate oxygen transport."
+    },
+    {
+      "id": "lymphoma",
+      "name": "Lymphoma",
+      "description": "Lymphoma is a type of cancer that affects the lymphatic system, causing abnormal growth of lymphocytes."
+    },
+    {
+      "id": "leukemia",
+      "name": "Leukemia",
+      "description": "Leukemia is a cancer of the blood and bone marrow, resulting in the overproduction of abnormal white blood cells."
+    },
+    {
+      "id": "inherited_coagulopathy",
+      "name": "Inherited Coagulopathy",
+      "description": "Inherited coagulopathy, such as hemophilia, is a bleeding disorder that is passed down through families and affects the blood's ability to clot properly."
+    },
+    {
+      "id": "acquired_coagulopathy",
+      "name": "Acquired Coagulopathy",
+      "description": "Acquired coagulopathy is a condition that disrupts the normal blood clotting process, often due to underlying medical conditions or medications."
+    }
+  ]
+}
